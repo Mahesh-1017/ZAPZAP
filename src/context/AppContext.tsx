@@ -16,6 +16,7 @@ type CartAction =
 type AuthState = {
   isAuthenticated: boolean;
   userEmail: string | null;
+  generatedOtp: string | null;
   login: (email: string) => void;
   verify: () => void;
   logout: () => void;
@@ -77,22 +78,26 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [cartState, dispatch] = useReducer(cartReducer, { items: [] });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [generatedOtp, setGeneratedOtp] = useState<string | null>(null);
 
   const login = (email: string) => {
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    setGeneratedOtp(otp);
     setUserEmail(email);
-    // In a real app, you would handle the login logic here
   };
 
   const verify = () => {
     setIsAuthenticated(true);
+    setGeneratedOtp(null);
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUserEmail(null);
+    setGeneratedOtp(null);
   };
 
-  const auth = { isAuthenticated, userEmail, login, verify, logout };
+  const auth = { isAuthenticated, userEmail, generatedOtp, login, verify, logout };
 
   return (
     <AppContext.Provider value={{ cartState, dispatch, auth }}>

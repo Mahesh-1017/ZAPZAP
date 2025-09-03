@@ -13,24 +13,30 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/context/AppContext';
-
-const MOCK_OTP = '123456';
+import { useToast } from '@/hooks/use-toast';
 
 export default function VerifyPage() {
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  const { verify, userEmail } = useAuth();
+  const { verify, userEmail, generatedOtp } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!userEmail) {
       router.replace('/');
+    } else if (generatedOtp) {
+      toast({
+        title: 'Verification Code',
+        description: `Your OTP is: ${generatedOtp}`,
+        duration: 10000,
+      });
     }
-  }, [userEmail, router]);
+  }, [userEmail, router, generatedOtp, toast]);
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
-    if (otp === MOCK_OTP) {
+    if (otp === generatedOtp) {
       verify();
       router.push('/products');
     } else {
@@ -44,8 +50,7 @@ export default function VerifyPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold font-headline">Verify Your Email</CardTitle>
           <CardDescription>
-            We've sent a one-time password to <span className="font-medium text-foreground">{userEmail}</span>.
-            (Hint: it's 123456)
+            We've sent a one-time password to <span className="font-medium text-foreground">{userEmail}</span>. Check the notification toast for your code.
           </CardDescription>
         </CardHeader>
         <CardContent>

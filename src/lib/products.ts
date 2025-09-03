@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'Stealth Performance Tee',
     description: 'A lightweight, moisture-wicking tee for intense workouts. Stay cool and dry.',
     price: 29.99,
-    image: 'https://picsum.photos/seed/1/600/600',
+    image: 'https://placehold.co/600x600/000000/FFFFFF/png?text=ZAP-ZAP',
     dataAiHint: 'black shirt'
   },
   {
@@ -14,7 +14,7 @@ export const products: Product[] = [
     name: 'Aero-Dry Fit Shirt',
     description: 'Engineered for breathability and comfort. Perfect for running or lifting.',
     price: 34.99,
-    image: 'https://picsum.photos/seed/2/600/600',
+    image: 'https://placehold.co/600x600/808080/FFFFFF/png?text=ZAP-ZAP',
     dataAiHint: 'gray shirt'
   },
   {
@@ -22,7 +22,7 @@ export const products: Product[] = [
     name: 'Vigor Muscle Tank',
     description: 'Show off your gains with this stylish and flexible muscle tank.',
     price: 24.99,
-    image: 'https://picsum.photos/seed/3/600/600',
+    image: 'https://placehold.co/600x600/FFFFFF/000000/png?text=ZAP-ZAP',
     dataAiHint: 'white tanktop'
   },
   {
@@ -30,7 +30,7 @@ export const products: Product[] = [
     name: 'Element Long Sleeve',
     description: 'A versatile long-sleeve shirt for cooler days or warming up.',
     price: 39.99,
-    image: 'https://picsum.photos/seed/4/600/600',
+    image: 'https://placehold.co/600x600/0000FF/FFFFFF/png?text=ZAP-ZAP',
     dataAiHint: 'blue shirt'
   },
   {
@@ -38,7 +38,7 @@ export const products: Product[] = [
     name: 'Momentum Graphic Tee',
     description: 'A bold graphic tee that makes a statement in and out of the gym.',
     price: 27.99,
-    image: 'https://picsum.photos/seed/5/600/600',
+    image: 'https://placehold.co/600x600/404040/FFFFFF/png?text=Momentum',
     dataAiHint: 'graphic tee'
   },
   {
@@ -46,7 +46,7 @@ export const products: Product[] = [
     name: 'Powerhouse Compression Top',
     description: 'Enhance performance and recovery with this advanced compression shirt.',
     price: 49.99,
-    image: 'https://picsum.photos/seed/6/600/600',
+    image: 'https://placehold.co/600x600/202020/FFFFFF/png?text=Power',
     dataAiHint: 'compression shirt'
   },
   {
@@ -54,7 +54,7 @@ export const products: Product[] = [
     name: 'Zenith Yoga Tee',
     description: 'Soft, stretchable fabric for maximum mobility during yoga or stretching.',
     price: 32.99,
-    image: 'https://picsum.photos/seed/7/600/600',
+    image: 'https://placehold.co/600x600/008000/FFFFFF/png?text=Zenith',
     dataAiHint: 'green shirt'
   },
   {
@@ -62,7 +62,7 @@ export const products: Product[] = [
     name: 'Atlas Heavy-Duty Tee',
     description: 'A durable and comfortable cotton tee for everyday wear or light training.',
     price: 25.99,
-    image: 'https://picsum.photos/seed/8/600/600',
+    image: 'https://placehold.co/600x600/FF0000/FFFFFF/png?text=Atlas',
     dataAiHint: 'red shirt'
   },
 ];
