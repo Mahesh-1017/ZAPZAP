@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/context/AppContext';
+import { Loader2 } from 'lucide-react';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -46,15 +47,27 @@ function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      login(email);
+      setIsLoading(true);
+      await login(email);
+      setIsLoading(false);
       router.push('/verify');
     }
+  };
+  
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+    // In a real app, you'd integrate Google Sign-In here.
+    // For this prototype, we'll simulate a login with a dummy email.
+    await login('user@google.com'); 
+    setIsLoading(false);
+    router.push('/verify');
   };
 
   return (
@@ -79,10 +92,11 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
               />
             </div>
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-              Continue with Email
+            <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
+              {isLoading ? <Loader2 className="animate-spin" /> : 'Continue with Email'}
             </Button>
           </form>
           <div className="relative my-6">
@@ -95,9 +109,8 @@ export default function LoginPage() {
               </span>
             </div>
           </div>
-          <Button variant="outline" className="w-full" onClick={handleLogin}>
-            <GoogleIcon className="mr-2 h-5 w-5" />
-            Google
+          <Button variant="outline" className="w-full" onClick={handleGoogleLogin} disabled={isLoading}>
+            {isLoading ? <Loader2 className="animate-spin" /> : <><GoogleIcon className="mr-2 h-5 w-5" /> Google</>}
           </Button>
         </CardContent>
         <CardFooter>

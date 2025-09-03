@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useReducer, ReactNode, useState } from 'react';
 import type { CartItem, Product } from '@/lib/types';
+import { sendOtpEmail } from '@/ai/flows/send-otp-email';
 
 type CartState = {
   items: CartItem[];
@@ -17,7 +18,7 @@ type AuthState = {
   isAuthenticated: boolean;
   userEmail: string | null;
   generatedOtp: string | null;
-  login: (email: string) => void;
+  login: (email: string) => Promise<void>;
   verify: () => void;
   logout: () => void;
 };
@@ -80,10 +81,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [generatedOtp, setGeneratedOtp] = useState<string | null>(null);
 
-  const login = (email: string) => {
+  const login = async (email: string) => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     setGeneratedOtp(otp);
     setUserEmail(email);
+    await sendOtpEmail({ email, otp });
   };
 
   const verify = () => {
